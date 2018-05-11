@@ -1,0 +1,46 @@
+{
+  "name": "findingfalcon",
+  "version": "1.0.0",
+  "description": "to help finding Falcon",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --recursive",
+    "coverage": "nyc -r html mocha --recursive",
+    "start": "node server.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*",
+      "public/*"
+    ],
+    "watch": [
+      "src/*",
+      "app.js",
+      "server.js"
+    ],
+    "delay": "2500"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankurrai1/FINDING-FALCON.git"
+  },
+  "author": "ankur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankurrai1/FINDING-FALCON/issues"
+  },
+  "homepage": "https://github.com/ankurrai1/FINDING-FALCON#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.4",
+    "nyc": "^11.7.3",
+    "supertest": "^3.0.0"
+  }
+}
