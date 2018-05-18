@@ -47,6 +47,12 @@ const addToFind = function(req,res){
     res.end();
 }
 
+const respondWithQuaryData = function(req,res){
+    let searchManager = req.app.searchManager;
+    let quaryData = searchManager.getQuaryData("vehicles");
+    res.send(JSON.stringify(quaryData));
+}
+
 const respondWith404 = function(req, res) {
     res.status(404).send(`404 File not found!\t bad url ${req.url}`);
 };
@@ -57,6 +63,7 @@ module.exports={
     addToken,
     respondWithTimeToken,
     addPlanets,
+    respondWithQuaryData,
     addVehicles,
     respondWithPlanets,
     respondWithVehicles,

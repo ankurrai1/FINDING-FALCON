@@ -20,6 +20,7 @@ app.post("/addToFind",handlers.addToFind);
 app.post("/timeTokenFor",handlers.respondWithTimeToken);
 app.get("/availablePlanets",handlers.respondWithPlanets);
 app.get("/availableVehicles",handlers.respondWithVehicles);
+app.get("/getAllSelected",handlers.respondWithQuaryData);
 app.use(express.static('public'));
 app.use(handlers.respondWith404);
 

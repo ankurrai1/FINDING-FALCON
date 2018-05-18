@@ -54,14 +54,17 @@ const showOptionsForPlanets=function(){
 }
 const updatePlanetAndVehicles = function(planetName,vehicleName){
     let table = document.getElementById("selectedItems")
-    table.innerHTML="<tr><th>Planets</th><th>Speed</th><th>TimeToken</th></tr>"
     createRequest(function(){
         let timeToken = JSON.parse(this.responseText);
         table.appendChild(getTableRowWithData(planetName,vehicleName,timeToken))
     },"/timeTokenFor",`planet=${planetName}&vehicle=${vehicleName}`,'POST');
     let rowCount = document.getElementsByTagName("tr").length;
-    if ( rowCount == 5) {
+    console.log(rowCount);
+    if ( rowCount == 4) {
         document.getElementById('options').innerHTML = getSearchButton();
+    }
+    else{
+        createRequest(showOptionsForPlanets,"/availablePlanets");
     }
 };
 
@@ -74,18 +77,33 @@ const showOptionsForVehicle =function () {
             let vehicle = this.innerText;
             createRequest(showError,'/addToFind',`planet=${planet}&vehicle=${vehicle}`,'POST');
             updatePlanetAndVehicles(planet,vehicle);
-            showOptionsForPlanets();
         }));
     });
 };
 
- let updateOptionArea = function (){
+let updateOptionArea = function (){
     let planet = this.innerText;
     let optionArea = document.getElementById('options')
     optionArea.innerHTML = `<h3 id="${planet}"> SELECT VEHICLE TO FIND ON - ${planet}<h3>`
     createRequest(showOptionsForVehicle,'/availableVehicles');
- }
+}
+const showResult = function(){
+    let result = JSON.parse(this.responseText);
+    if(result.status&&result.status=="success"){
+        document.getElementById('options').innerHTML = `<h2>you succeed to find Falcon on ${result.planet_name}</h2>`
+    }
+    else if(result.status&&result.status=="false"){
+        document.getElementById('options').innerHTML = `<h2>Sorry you failed to find Falcon</h2>`
+    }
+    else{
+        document.getElementById('options').innerHTML = result.error;
+    }
+}
+const getResult =function () {
+    let data = this.responseText;
+    createRequest(showResult,"https://findfalcone.herokuapp.com/find",data,"POST")
+}
 
  let startSearch= function(){
-    createRequest(displayResult,"/");    
+    createRequest(getResult,"/getAllSelected");    
  };

@@ -72,6 +72,14 @@ class SearchManager {
       }
       return this.vehicles.filter(vehicle=>vehicle.total_no>0);
     }
+
+    getQuaryData(){
+      let quaryData = {};
+      quaryData.token = this.token;
+      quaryData.planet_names = this.planetsToFind;
+      quaryData.vehicle_names = this.vehiclesToFind;
+      return quaryData;
+    }
     
   }
   
