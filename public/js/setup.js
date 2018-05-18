@@ -5,6 +5,22 @@ const getButton =function(element,callBack){
     button.onclick = callBack;
     return button;
 }
+const getTableData = function(data){
+    let td = document.createElement('td');
+    td.innerText = data;
+    return td;
+}
+const getSearchButton = function(){
+    return '<button onclick="startSearch()">SEARCH</button>'
+};
+
+const getTableRowWithData=function(firstData,secondData,ThirdData){
+   let tableRow = document.createElement("tr");
+   tableRow.appendChild(getTableData(firstData));
+   tableRow.appendChild(getTableData(secondData));
+   tableRow.appendChild(getTableData(ThirdData));
+   return tableRow; 
+}
 
 const storePlanets =function () {
     let planets=JSON.stringify(this.responseText);
@@ -36,16 +52,29 @@ const showOptionsForPlanets=function(){
         optionArea.appendChild(getButton(element,updateOptionArea));
     })
 }
+const updatePlanetAndVehicles = function(planetName,vehicleName){
+    let table = document.getElementById("selectedItems")
+    table.innerHTML="<tr><th>Planets</th><th>Speed</th><th>TimeToken</th></tr>"
+    createRequest(function(){
+        let timeToken = JSON.parse(this.responseText);
+        table.appendChild(getTableRowWithData(planetName,vehicleName,timeToken))
+    },"/timeTokenFor",`planet=${planetName}&vehicle=${vehicleName}`,'POST');
+    let rowCount = document.getElementsByTagName("tr").length;
+    if ( rowCount == 5) {
+        document.getElementById('options').innerHTML = getSearchButton();
+    }
+};
 
 const showOptionsForVehicle =function () {
     let vehicles = JSON.parse(this.responseText);
-    console.log(vehicles);
     let optionArea = document.getElementById('options')        
     vehicles.forEach(element=>{
         optionArea.appendChild(getButton(element,function(){
             let planet = document.getElementsByTagName("h3")[0].id;
             let vehicle = this.innerText;
             createRequest(showError,'/addToFind',`planet=${planet}&vehicle=${vehicle}`,'POST');
+            updatePlanetAndVehicles(planet,vehicle);
+            showOptionsForPlanets();
         }));
     });
 };

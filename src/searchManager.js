@@ -4,12 +4,15 @@ let fetch = function(array, objName, type="obj") {
   if (isIndex(type)){
     return array.findIndex(obj => obj.name == objName);
   }
+  console.log(array,objName,type);
+  
   return array.find(obj => obj.name == objName);
 };
 
 class SearchManager {
     constructor() {
         this.token="";
+        this.allPlanets=[];
         this.planets = [];
         this.vehicles = [];
         this.planetsToFind=[];
@@ -26,6 +29,7 @@ class SearchManager {
 
     addPlanets(planets){
       this.planets=JSON.parse(planets);
+      this.allPlanets=JSON.parse(planets);
     }
 
     addVehicles(vehicles){
@@ -40,6 +44,13 @@ class SearchManager {
           vehicle.total_no--;
         }
       });
+    }
+
+    getTimeToken(planetName,vehicleName){
+      let planet = fetch(this.allPlanets,planetName);
+      let vehicle = fetch(this.vehicles,vehicleName);
+      let timeToken = planet.distance/vehicle.speed;
+      return timeToken;
     }
 
     addToFind(planetName,vehicleName){

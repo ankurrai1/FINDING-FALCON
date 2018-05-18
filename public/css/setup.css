@@ -29,6 +29,14 @@ header {
     width: 100%;
 }
 
+table {
+    width: 70%
+}
+
+td {
+    text-align: center;
+}
+
 button{
     font-family: sans-serif;
     font-size: 20px;

@@ -17,6 +17,7 @@ app.post("/token",handlers.addToken);
 app.post("/planets",handlers.addPlanets);
 app.post("/vehicles",handlers.addVehicles);
 app.post("/addToFind",handlers.addToFind);
+app.post("/timeTokenFor",handlers.respondWithTimeToken);
 app.get("/availablePlanets",handlers.respondWithPlanets);
 app.get("/availableVehicles",handlers.respondWithVehicles);
 app.use(express.static('public'));

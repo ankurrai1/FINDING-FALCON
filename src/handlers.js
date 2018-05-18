@@ -19,10 +19,12 @@ const addVehicles=function(req,res){
     res.end();
 }
 
-let returnVehicals=function(req,res){
+let respondWithTimeToken=function(req,res){
+    let planet=req.body.planet;
+    let vehicle=req.body.vehicle;
     let searchManager = req.app.searchManager;
-    let vehicles = searchManager.getVehiclessToFind();
-    res.send(JSON.stringify(vehicles));
+    let timeToken = searchManager.getTimeToken(planet,vehicle);
+    res.send(JSON.stringify(timeToken));
 }
 
 const respondWithPlanets = function(req,res){
@@ -53,7 +55,7 @@ const respondWith404 = function(req, res) {
 module.exports={
     respondWith404,
     addToken,
-    returnVehicals,
+    respondWithTimeToken,
     addPlanets,
     addVehicles,
     respondWithPlanets,
