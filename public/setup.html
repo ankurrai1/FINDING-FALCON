@@ -11,17 +11,15 @@
   <script type="text/javascript" src="./js/setup.js" charset="utf-8"></script>
 </head>
 
-<body onload="getPlanetAndVehical()">
+<body onload="getPlanetAndVehicles()">
     <header>FINDING FALCON</header>
     <div id="container">
         <p>
-            Choose a planet and vehical according to their characteristics to find Queen of Falicornia.
-            And press SEARCH to send vehical on these planet for search.
+            Choose a planet and vehicles according to their characteristics to find Queen of Falicornia.
+            And press SEARCH to send vehicles on these planet for search.
         </p>
-        <div class="planets" id="first"><h3>First planet</h3></div><br>
-        <div class="planets" id="second"><h3>Second planet</h3></div><br>
-        <div class="planets" id="third"><h3>Third planet</h3></div><br>
-        <div class="planets" id="fourth"><h3>Fourth planet</h3></div><br>
+        <table id="selectedItems"></table>
+        <div class="planets" id="options"></div><br>
     </div>
     <button onclick="startSearch()">SEARCH</button>
 </body>

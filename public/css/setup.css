@@ -26,9 +26,9 @@ header {
 }
 
 .planets {
-    width: 25%;
-    background-color: rgb(107, 118, 150);
+    width: 100%;
 }
+
 button{
     font-family: sans-serif;
     font-size: 20px;

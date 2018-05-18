@@ -1,31 +1,62 @@
-const getSelection =function(options){
-    let select = document.createElement('select')
-    options.forEach(element => {
-        let option = document.createElement('option')
-        option.value=element.name;
-        option.id=element.distance || element.speed;
-        option.innerText=element.name;
-        select.appendChild(option);
-    });
-    return select
+
+const getButton =function(element,callBack){
+    let button = document.createElement('button');
+    button.innerText = element.name;
+    button.onclick = callBack;
+    return button;
 }
-const showOptions=function(){
+
+const storePlanets =function () {
+    let planets=JSON.stringify(this.responseText);
+    createRequest(showError,"/planets",`planets=${planets}`,"POST");
+};
+
+const storeVehicles =function () {
+    let vehicles=JSON.stringify(this.responseText);
+    createRequest(showError,"/vehicles",`vehicles=${vehicles}`,"POST");
+};
+
+const storeToken=function(){
+    let data=JSON.parse(this.responseText).token;
+    createRequest(showError,"/token",`token=${data}`,"POST");
+    window.location.href ="/setup.html";    
+};
+
+const getPlanetAndVehicles = function (){
+    createRequestFor("planets",storePlanets);
+    createRequest(showOptionsForPlanets,"/availablePlanets");
+    createRequestFor("vehicles",storeVehicles);
+};
+
+const showOptionsForPlanets=function(){
     let options = JSON.parse(this.responseText);
-    document.getElementById('first').appendChild(getSelection(options));
-    document.getElementById('second').appendChild(getSelection(options));
-    document.getElementById('third').appendChild(getSelection(options));
-    document.getElementById('fourth').appendChild(getSelection(options));
+    let optionArea = document.getElementById('options')
+    optionArea.innerHTML = "<h3>SELECT PLANET TO FIND<h3>"
+    options.forEach(element=>{
+        optionArea.appendChild(getButton(element,updateOptionArea));
+    })
 }
 
-const getPlanets = function(){
-    createRequest(showOptions,"https://findfalcone.herokuapp.com/planets");
-}
+const showOptionsForVehicle =function () {
+    let vehicles = JSON.parse(this.responseText);
+    console.log(vehicles);
+    let optionArea = document.getElementById('options')        
+    vehicles.forEach(element=>{
+        optionArea.appendChild(getButton(element,function(){
+            let planet = document.getElementsByTagName("h3")[0].id;
+            let vehicle = this.innerText;
+            createRequest(showError,'/addToFind',`planet=${planet}&vehicle=${vehicle}`,'POST');
+        }));
+    });
+};
 
-const getVehicals = function(){
-    createRequest(showOptions,"https://findfalcone.herokuapp.com/vehicles");
-}
-
- let getPlanetAndVehical = function (){
-    getPlanets();
-    getVehicals();
+ let updateOptionArea = function (){
+    let planet = this.innerText;
+    let optionArea = document.getElementById('options')
+    optionArea.innerHTML = `<h3 id="${planet}"> SELECT VEHICLE TO FIND ON - ${planet}<h3>`
+    createRequest(showOptionsForVehicle,'/availableVehicles');
  }
+
+ let startSearch= function(){
+    createRequest(displayResult,"/");    
+ };

@@ -48,7 +48,7 @@ describe("app", () => {
         .get("/setup.html")
         .expect(200)
         .expect("Content-Type", "text/html; charset=UTF-8")
-        .expect(/getPlanetAndVehical()/)
+        .expect(/getPlanetAndVehicles()/)
         .end(handleError(done));
     });
   });
@@ -58,7 +58,6 @@ describe("app", () => {
         .post("/token")
         .send("token=123456")
         .expect(200)
-        .expect("set-cookie", /token=123456/)
         .end(handleError(done));
     });
   });
