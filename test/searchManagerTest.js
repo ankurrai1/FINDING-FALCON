@@ -101,47 +101,4 @@ describe("SearchManager", () => {
             assert.deepEqual(searchManager.getAvailable("vehicles"),expectedVehicles);
         });
     });
-    // describe('Game status', () => {
-    //   beforeEach(() => {
-    //     searchManager.loadPieces();
-    //     searchManager.addPlayer("ravi", 0, 'red');
-    //     searchManager.addPlayer("ankur", 1, 'blue');
-    //     let redArmyPos = {'3_2': 'F', '3_1': 'B', '9_0': '10'};
-    //     let blueArmyPos = {'3_5': '2', '4_1': 'B', '3_3': 'F'};
-    //     searchManager.setBattlefieldFor(0, redArmyPos);
-    //     searchManager.setBattlefieldFor(1, blueArmyPos);
-    //   });
-    //   describe('# updateGameStatus', () => {
-    //     beforeEach(() => {
-    //       let player = searchManager.players.getPlayer(0);
-    //       player.kill('F');
-    //       searchManager.updateGameStatus();
-    //     });
-    //     it('should update game status as over if any of player has lost', () => {
-    //       assert.isOk(searchManager.gameOver);
-    //     });
-    //     it('should update name of winner in game when game is over', () => {
-    //       assert.equal(searchManager.winner, 1);
-    //     });
-    //   });
-    //   describe('draw game',()=>{
-    //     it('should update game draw if no moving piece left on battlefield',()=>{
-    //       let piecesId = ['s',2,2,3,3,9,10];
-    //       let player1 = searchManager.players.getPlayer(0);
-    //       let player2 = searchManager.players.getPlayer(1);
-    //       piecesId.forEach(pieceId=>{
-    //         player1.kill(pieceId);
-    //       });
-    //       piecesId.forEach(pieceId=>{
-    //         player2.kill(pieceId);
-    //       });
-    //       searchManager.updateGameStatus();
-    //       assert.isOk(searchManager.gameOver);
-    //       assert.equal(searchManager.winner, '');
-    //     });
-    //   });
-    // });
   });
-//   it("should return empty array when no planets added", () => {
-//     assert.deepEqual(searchManager.players, {players: []});
-//   });
