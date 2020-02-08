@@ -5,8 +5,19 @@
  
  
  ***Build this App***
- ----
+----
  `npm install`
-#### To start server run cmd "npm start".
-#### To test with mocha run cmd "npm test".
-#### To check test coverage run cmd "npm rum coverage".
+ 
+ ***To Run Server***
+----
+ `npm start`
+ 
+***To Run Test***
+----
+`npm test`
+
+***To Check Test Coverage***
+----
+`npm run coverage`
+
+>The coverage is checked instanbul coverage 
