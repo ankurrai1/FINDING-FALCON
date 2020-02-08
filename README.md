@@ -1,4 +1,6 @@
 # FINDIND FALCON
+> This is a UI Based game to helo king shan in findig his Falcon.
+ So the story is like this there are 4 planets and 6 suitable vehicles for them
 
 ### It is a UI to help king Shan in finding Falcon by selecting
 ### 4 planets among 6 and suitable vehicles for them.
