@@ -17,7 +17,7 @@
 ----
 `npm test`
 
-***To Check Test Coverage***
+### ***To Check Test Coverage***
 ----
 `npm run coverage`
 
