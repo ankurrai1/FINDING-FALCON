@@ -13,6 +13,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({
     extended: false
 }));
+
 app.post("/token",handlers.addToken);
 app.post("/planets",handlers.addPlanets);
 app.post("/vehicles",handlers.addVehicles);
